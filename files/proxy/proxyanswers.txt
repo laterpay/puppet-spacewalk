@@ -1,0 +1,15 @@
+VERSION="1.9"
+RHN_PARENT="spacewalk.example.com"
+TRACEBACK_EMAIL="admin@example.com"
+USE_SSL="Y"
+CA_CHAIN="/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT"
+HTTP_PROXY=
+SSL_ORG="Example Org"
+SSL_ORGUNIT="proxy1.example.com"
+SSL_COMMON="proxy1.example.com"
+SSL_CITY="New York"
+SSL_STATE="New York"
+SSL_COUNTRY="US"
+SSL_EMAIL="admin@example.com"
+INSTALL_MONITORING="n"
+POPULATE_CONFIG_CHANNEL="n

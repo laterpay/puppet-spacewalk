@@ -3,15 +3,14 @@ puppet-spacewalk
 
 Create the files
 
-#/etc/sysconfig/spacewalk-credentials 
-USERNAME="admin"
-PASSWORD="putyourUIpasshere"
+    ###/etc/sysconfig/spacewalk-credentials 
+    USERNAME="admin"
+    PASSWORD="putyourUIpasshere"
 
 
-#/etc/sysconfig/centos-errata 
-BASE="/opt/Centos-Errata"
-VERSION="6"
-
+    ###/etc/sysconfig/centos-errata
+    BASE="/opt/Centos-Errata"
+    VERSION="6"
 
 and simply
 

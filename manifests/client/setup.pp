@@ -36,6 +36,9 @@ class spacewalk::client::setup (
     package { "rhn-setup" :
         ensure => present,
     }
+    package { "rhncfg-actions" :
+        ensure => present,
+    }
 
     exec { "spacewalk_join" :
         command => "rhnreg_ks --serverUrl=${server_url} --sslCACert=${ssl_ca_cert} --activationkey=${keys} --profilename=$::fqdn",

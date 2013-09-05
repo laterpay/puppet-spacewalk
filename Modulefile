@@ -1,0 +1,8 @@
+name    'laterpay-spacewalk'
+version '0.0.1'
+source 'https://github.com/laterpay/puppet-spacewalk'
+author 'laterpay'
+license 'Apache License, Version 2.0'
+summary 'Module for managing and configuring Spacewalk'
+description 'Module for managing and configuring Spacewalk'
+project_page 'https://github.com/spacewalk/puppet-spacewalk'

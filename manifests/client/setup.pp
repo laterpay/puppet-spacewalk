@@ -31,15 +31,15 @@ class spacewalk::client::setup (
         /^6/ => 'http://yum.spacewalkproject.org/1.8-client/RHEL/6/$basearch/'
       },
       gpgkey  => 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2012'
-    }
-
+    }->
     package { "rhn-setup" :
         ensure => present,
-    }
+        require => Yumrepo['SpacewalkClient'];
+    }->
     package { "rhncfg-actions" :
         ensure => present,
-    }
-
+        require => Yumrepo['SpacewalkClient'];
+    }->
     exec { "spacewalk_join" :
         command => "rhnreg_ks --serverUrl=${server_url} --sslCACert=${ssl_ca_cert} --activationkey=${keys} --profilename=$::fqdn",
         creates => '/etc/sysconfig/rhn/systemid',

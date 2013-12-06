@@ -27,16 +27,13 @@ class spacewalk::client::setup (
       enabled => 1,
       descr   => 'Spacewalk Client Repository for EL - $basearch',
       baseurl => $operatingsystemrelease ? {
-        /^5/ => 'http://yum.spacewalkproject.org/1.8-client/RHEL/5/$basearch/',
-        /^6/ => 'http://yum.spacewalkproject.org/1.8-client/RHEL/6/$basearch/'
+        /^5/ => 'http://yum.spacewalkproject.org/2.0-client/RHEL/5/$basearch/',
+        /^6/ => 'http://yum.spacewalkproject.org/2.0-client/RHEL/6/$basearch/'
       },
       gpgkey  => 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2012'
     }
 
     package { "rhn-setup" :
-        ensure => present,
-    }
-    package { "rhncfg-actions" :
         ensure => present,
     }
 

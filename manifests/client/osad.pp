@@ -12,16 +12,16 @@ class spacewalk::client::osad {
         value   => '\/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT',
     }
 
-    package { "osad" :
+    package { "osa-dispatcher" :
         ensure => installed,
         require => Class["spacewalk::client::setup"]
     }
 
     file { "/etc/sysconfig/rhn/osad.conf" :
-        require => Package["osad"],
+        require => Package["osa-dispatcher"],
     }
 
-    service { "osad" :
+    service { "osa-dispatcher" :
         enable => true,
         ensure => true,
         require => File["/etc/sysconfig/rhn/osad.conf"],
@@ -29,16 +29,11 @@ class spacewalk::client::osad {
     }
 
     cron { "osad_restart" :
-        command => "/sbin/service osad restart > /dev/null",
+        command => "/sbin/service osa-dispatcher restart > /dev/null",
         user => "root",
         hour => 0,
         minute => 0,
     }
 
-    exec { "rhn-actions-control_enable-all" :
-        command => "rhn-actions-control -f --enable-all",
-        onlyif => "rhn-actions-control --report| grep disabled",
-        require => File["/etc/sysconfig/rhn/osad.conf"],
-    }
 }
 

@@ -6,28 +6,28 @@ class spacewalk::spacewalk::package {
         'spacewalk-repo': 
             provider => rpm,
             ensure => installed, 
-            source => 'http://yum.spacewalkproject.org/1.9/RHEL/6/x86_64/spacewalk-repo-1.9-1.el6.noarch.rpm',
+            source => 'http://yum.spacewalkproject.org/2.0/RHEL/6/x86_64/spacewalk-repo-2.0-3.el6.noarch.rpm',
             require => Class['epel'];
     }
     package {
-        'spacewalk-setup-embedded-postgresql':
+        'spacewalk-setup-postgresql':
             ensure  => installed,
             require => Package['spacewalk-repo'];
     }
     package {
         'spacewalk-postgresql':
             ensure  => installed,
-            require => Package['spacewalk-setup-embedded-postgresql'];
+            require => Package['spacewalk-setup-postgresql'];
         'syslinux':
             ensure  => installed;
     }
     package {
         'spacecmd':
             ensure  => installed,
-            require => Package['spacewalk-setup-embedded-postgresql'];
+            require => Package['spacewalk-setup-postgresql'];
         'spacewalk-utils':
             ensure  => installed,
-            require => Package['spacewalk-setup-embedded-postgresql'];
+            require => Package['spacewalk-setup-postgresql'];
     }
 
     file {

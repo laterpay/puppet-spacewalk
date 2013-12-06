@@ -35,6 +35,7 @@ class spacewalk::client::setup (
 
     package { "rhn-setup" :
         ensure => present,
+        require => Yumrepo['SpacewalkClient'];
     }
 
     exec { "spacewalk_join" :
@@ -42,4 +43,11 @@ class spacewalk::client::setup (
         creates => '/etc/sysconfig/rhn/systemid',
         require => Package["rhn-setup"],
     }
+
+    exec { 'initial_yum_clean' :
+        command     => 'yum clean all',
+        subscribe   => Exec['spacewalk_join'],
+        refreshonly => true,
+    }
+
 }

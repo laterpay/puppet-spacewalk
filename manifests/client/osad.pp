@@ -21,7 +21,7 @@ class spacewalk::client::osad {
         require => Package["osad"],
     }
 
-    service { "osa-dispatcher" :
+    service { "osad" :
         enable => true,
         ensure => true,
         require => File["/etc/sysconfig/rhn/osad.conf"],

@@ -14,7 +14,7 @@ class spacewalk::client::setup (
 
     include epel
 
-    if $spacewalk::wipe_reposd {
+    if $wipe_reposd {
         file { '/etc/yum.repos.d':
             ensure  => directory,
             recurse => true,

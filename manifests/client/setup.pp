@@ -2,6 +2,8 @@ class spacewalk::client::setup (
     $server_url,
     $keys,
     $version,
+    $spacewalk_client_repo = hiera('spacewalk_client_repo','http://yum.spacewalkproject.org/2.2-client/RHEL/6/$basearch/'),
+    $spacewalk_client_repo_gpg = hiera('spacewalk_client_repo_gpg','http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2012'),
     $ssl_ca_cert = '/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT',
     $wipe_reposd  = false
     ) {
@@ -28,9 +30,10 @@ class spacewalk::client::setup (
       descr   => 'Spacewalk Client Repository for EL - $basearch',
       baseurl => $operatingsystemrelease ? {
         /^5/ => 'http://yum.spacewalkproject.org/2.1-client/RHEL/5/$basearch/',
-        /^6/ => 'http://yum.spacewalkproject.org/2.1-client/RHEL/6/$basearch/'
+        /^6/ => $spacewalk_client_repo,
+        /^7/ => $spacewalk_client_repo,
       },
-      gpgkey  => 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2012'
+      gpgkey  => $spacewalk_client_repo_gpg
     }
 
     package { "rhn-setup" :

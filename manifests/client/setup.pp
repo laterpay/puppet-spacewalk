@@ -12,7 +12,7 @@ class spacewalk::client::setup (
     $package_version     = "${version_parts[0]}${version_parts[1]}"
 
     # This way we can easilly switch between osad and rhnsd.
-    include spacewalk::client::osad
+    #include spacewalk::client::osad
 
     include epel
 
